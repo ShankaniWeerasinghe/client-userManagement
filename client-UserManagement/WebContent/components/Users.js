@@ -75,11 +75,10 @@ function onItemSaveComplete(response, status)
 
 $(document).on("click", ".btnUpdate", function(event)
 {
-	$("#hidItemIDSave").val($(this).data("userid"));
+	$("#hidItemIDSave").val($(this).data("UserEmail"));
 	$("#firstName").val($(this).closest("tr").find('td:eq(0)').text());
 	$("#lastName").val($(this).closest("tr").find('td:eq(1)').text());
-	$("#phoneNo").val($(this).closest("tr").find('td:eq(2)').text());
-	$("#email").val($(this).closest("tr").find('td:eq(3)').text());
+	$("#phone").val($(this).closest("tr").find('td:eq(2)').text());
 	$("#type").val($(this).closest("tr").find('td:eq(4)').text());
 	$("#password").val($(this).closest("tr").find('td:eq(5)').text());
 })
@@ -91,7 +90,7 @@ $(document).on("click", ".btnRemove", function(event)
 	{
 		url : "UserAPI",
 		type : "DELETE",
-		data : "userId=" + $(this).data("userid"),
+		data : "UserEmail=" + $(this).data("UserEmail"),
 		dataType : "text",
 		complete : function(response, status)
 		{
@@ -144,12 +143,12 @@ function validateItemForm()
 		return "Insert lastName.";
 }
 // Phone
-	if ($("#phoneNo").val().trim() == "")
+	if ($("#phone").val().trim() == "")
 	{
 		return "Insert phoneNo.";
 	}
 // EMAIL
-	if ($("#email").val().trim() == "")
+	if ($("#UserEmail").val().trim() == "")
 	{
 		return "Insert email.";
 	}

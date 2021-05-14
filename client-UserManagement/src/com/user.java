@@ -113,7 +113,7 @@ public class user {
 				 String password = rs.getString("password");
 				 
 				// Add into the html table
-				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + UserEmail+ "'>" + firstName + "</td>";
+				 output += "<tr><td><input id='hidItemIDUpdate' name='hidItemIDUpdate' type='hidden' value='" + UserEmail + firstName + "</td>";
 				 output += "<td>" + lastName + "</td>"; 
 				 output += "<td>" + phoneNo + "</td>"; 
 				 output += "<td>" + type + "</td>"; 

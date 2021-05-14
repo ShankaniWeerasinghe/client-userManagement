@@ -45,7 +45,7 @@ public class UserAPI extends HttpServlet {
 				request.getParameter("firstName"), 
 				request.getParameter("lastName"), 
 				request.getParameter("type"),
-				request.getParameter("phoneNo"),
+				request.getParameter("phone"),
 				request.getParameter("password"));
 		
 	}
@@ -83,13 +83,12 @@ public class UserAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map paras = getParasMap(request);
 		
-		String output = newuser.updateUser(paras.get("hidSave").toString(),
+		String output = newuser.updateUser(paras.get("hidItemIDSave").toString(),
 				 paras.get("firstName").toString(), 
 				 paras.get("lastName").toString(), 
-				 paras.get("phoneNo").toString(),
+				 paras.get("phone").toString(),
 				 paras.get("email").toString(),
-				 paras.get("type").toString(),
-				 paras.get("password").toString());
+				 paras.get("type").toString());
 
 		response.getWriter().write(output);
 	}
