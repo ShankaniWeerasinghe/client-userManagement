@@ -6,6 +6,7 @@ package com;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -26,6 +27,7 @@ public class user {
 		 {e.printStackTrace();
 		 return con; 
 		 }
+		return con;
 		 }
 	public String readUser()
 	{ 
@@ -88,4 +90,113 @@ public class user {
 	  } 
 	 return output; 
 	 }
-}
+	
+	public String insertUser(String UserEmail,String firstName, String lastName, String type, String phone, String password)
+			 { 
+			 String output = ""; 
+			 try
+			 { 
+			 Connection con = connect(); 
+			 if (con == null) 
+			 { 
+			 return "Error while connecting to the database for inserting."; 
+			 } 
+			
+			 PreparedStatement preparedStmt = con.prepareStatement(query); 
+			 // binding values
+			 preparedStmt.setString(1,UserEmail);
+			 preparedStmt.setString(2, firstName); 
+			 preparedStmt.setString(3, lastName); 
+			 preparedStmt.setString(4,type); 
+			 preparedStmt.setString(5, phone);
+			 preparedStmt.setString(6, password);
+			 
+			// execute the statement
+			 preparedStmt.execute(); 
+			 con.close(); 
+			 
+			 String newUser = readUser(); 
+			 output = "{\"status\":\"success\", \"data\": \"" + 
+			 newUser + "\"}"; 
+			
+			
+			 } 
+			 catch (Exception e) 
+			 { 
+			 output = "Error while inserting the item."; 
+			 System.err.println(e.getMessage()); 
+			 } 
+			 return output; 
+			 } 
+
+
+		
+		 public String updateUser(String UserEmail, String firstName, String lastName, String type,String phone, String password) 
+		 { 
+			 String output = ""; 
+			 try
+			 { 
+			 Connection con = connect(); 
+			 if (con == null) 
+			 { 
+			 return "Error while connecting to the database for updating."; 
+			 }
+			 
+			// create a prepared statement
+			 String query = "UPDATE users SET firstName=?,lastName=?,type=?,phone=?,password=? WHERE UserEmail=?"; 
+			 
+			 PreparedStatement preparedStmt = con.prepareStatement(query); 
+			
+			 // binding values
+			preparedStmt.setString(1,UserEmail);
+			preparedStmt.setString(2, firstName); 
+			preparedStmt.setString(3, lastName); 
+			preparedStmt.setString(4,type); 
+			preparedStmt.setString(5, phone);
+			preparedStmt.setString(6, password);
+		
+		 // execute the statement
+		 preparedStmt.execute(); 
+		 con.close(); 
+		 String newItems = readUser(); 
+		 output = "{\"status\":\"success\", \"data\": \"" + 
+		 newItems + "\"}"; 
+		 } 
+		 catch (Exception e) 
+		 { 
+		 output = "{\"status\":\"error\", \"data\": \"Error while updating the item.\"}"; 
+		 System.err.println(e.getMessage()); 
+		 } 
+		 return output;
+		 }
+		 
+		 public String deleteItem(String itemID) 
+		 { 
+		 String output = ""; 
+		 try
+		 { 
+		 Connection con = connect(); 
+		 if (con == null) 
+		 { 
+		 return "Error while connecting to the database for deleting."; 
+		 }
+		// create a prepared statement
+		 String query = "delete from items where UseEmail=?"; 
+		 PreparedStatement preparedStmt = con.prepareStatement(query); 
+		 // binding values
+		 preparedStmt.setInt(1, Integer.parseInt(itemID)); 
+		 // execute the statement
+		 preparedStmt.execute(); 
+		 con.close(); 
+		 String newUser = readUser(); 
+		 output = "{\"status\":\"success\", \"data\": \"" + newUser + "\"}"; 
+		 } 
+		 catch (Exception e) 
+		 { 
+		 output = "{\"status\":\"error\", \"data\":  \"Error while deleting the item.\"}"; 
+		 System.err.println(e.getMessage()); 
+		 } 
+		 return output; 
+		 } 
+		}
+
