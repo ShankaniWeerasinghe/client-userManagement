@@ -70,21 +70,15 @@ pageEncoding="ISO-8859-1"%>
  <input type="text" id="password" name="txtName">
  </div>
 
-<br>
-<input id="btnSave" name="btnSave" type="button" value="Save" 
- class="btn btn-primary">
- <input type="hidden" id="hidItemIDSave" 
- name="hidItemIDSave" value="">
-
+<input id='password' name='password' type='text' class='form-control form-control-sm'><br>
+		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
+		<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 
 </form>
 <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>
-<div id="divItemsGrid">
- <%
- 	user us=new user();
- 	out.print("us.readUser()");
- %>
+<br><div id="divItemsGrid">
+
 </div>
 </div> </div> </div> 
 </body>
