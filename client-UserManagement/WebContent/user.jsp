@@ -70,7 +70,7 @@ pageEncoding="ISO-8859-1"%>
  <input type="text" id="password" name="txtName">
  </div>
 
-<input id='password' name='password' type='text' class='form-control form-control-sm'><br>
+<input id='password' name='password' type='password' class='form-control form-control-sm'><br>
 		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
 		<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 
